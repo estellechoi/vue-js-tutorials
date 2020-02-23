@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <app-header v-on:increase="increaseNumber" v-bind:propsdata="number"></app-header>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var appHeader = {
+            template: '<header><h1>{{propsdata}}</h1><button v-on:click="increase">Click</button></header>',
+            methods: {
+                increase: function() {
+                    // this : appHeader object
+                    this.$emit('increase');
+                }
+            },
+            props: ['propsdata']
+        }
+
+        new Vue({
+            el: '#app',
+            components: {
+                'app-header': appHeader
+            },
+            data : {
+                number: 10
+            },
+            methods: {
+                increaseNumber: function() {
+                    // this : Vue object
+                    // this.number : Vue object's data number
+                    this.number += 1;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
