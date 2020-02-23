@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{msg}}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        // when creating Vue instance, 'options object' is put as a parameter.
+        var vm = new Vue({
+            // select this element and make it use APIs of Vue instance.
+            el: '#app',
+            // When a Vue instance created, it adds all the properties in its data object to Vue’s reactivity system.
+            data: {
+                msg: 'hi'
+            },
+            methods: {
+
+            },
+            created: function() {
+                
+            }
+        });
+    </script>
+</body>
+</html>
