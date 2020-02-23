@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{msg}}
+    </div>
+
+    <!-- Direct <script> include to use Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        // Every Vue application starts by creating a new Vue instance.
+        new Vue({
+            el: '#app',
+            // data object affects view.
+            data: {
+                msg: 'Hello Vue'
+            }
+        })
+    </script>
+    
+</body>
+</html>
