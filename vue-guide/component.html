@@ -11,12 +11,14 @@
     <div id="app">
         <app-header></app-header>
         <app-content></app-content>
-
+        <app-footer></app-footer>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
         // Components must be registered so that Vue knows about them.
+
+        // Global Registration
         // Vue.component('component name', description {});
         Vue.component('app-header', {
             template: '<h1>Header<h1>'
@@ -25,9 +27,15 @@
             template: '<section>Section</section>'
         });
 
-        // when creating a Vue instance, it is <Root> component automatically.
+        // when creating a Vue instance, the element is registered as <Root> component automatically.
         new Vue({
             el: '#app',
+            // Local Registration
+            components: {
+                'app-footer': {
+                    template: '<footer>Footer</footer>'
+                }
+            }
         });
     </script>
 </body>
