@@ -10,31 +10,39 @@
     <!-- Root component -->
     <div id="app">
         <app-header></app-header>
-        <app-content></app-content>
         <app-footer></app-footer>
+    </div>
+
+    <!-- Root component -->
+    <div id="app2">
+        <app-header></app-header>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
         // Components must be registered so that Vue knows about them.
 
-        // Global Registration
+        // * Global Registration : can be used in all Vue instances.
         // Vue.component('component name', description {});
         Vue.component('app-header', {
             template: '<h1>Header<h1>'
         });
-        Vue.component('app-content', {
-            template: '<section>Section</section>'
-        });
 
-        // when creating a Vue instance, the element is registered as <Root> component automatically.
+        // * Local Registration : cannot be used in other Vue instances.
         new Vue({
             el: '#app',
-            // Local Registration
             components: {
                 'app-footer': {
                     template: '<footer>Footer</footer>'
                 }
+            }
+        });
+
+        // when creating a Vue instance, the element is registered as <Root> component automatically.
+        new Vue({
+            el: '#app2',
+            components: {
+
             }
         });
     </script>
