@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+        <!-- 
+            * Event : from child to parent communication
+            <app-header v-on:event name of child component="method of parent to be called"></app-header> 
+        -->
+        <app-header v-on:passevent="logText" v-bind:propsdata="number"></app-header>
+        <br>
+        <app-content v-on:increase="increaseNumber"></app-content>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var appHeader = {
+            template: '<header><h1>{{propsdata}}</h1><button v-on:click="passEvent">Click</button></header>',
+            props: ['propsdata'],
+            methods: {
+                passEvent: function() {
+                    // emit event (이벤트 발생)
+                    this.$emit('passevent');
+                }
+            }
+        }
+
+        var appContent = {
+            template: '<button v-on:click="addNumber">Add Number</button>',
+            methods: {
+                addNumber: function() {
+                    // emit event
+                    this.$emit('increase');
+                }
+            }
+        }
+
+        // Vue instance
+        new Vue({
+            el: '#app',
+            components: {
+                'app-header': appHeader,
+                'app-content': appContent
+            },
+            methods: {
+                logText: function() {
+                    console.log('event emitted');              
+                },
+                increaseNumber: function() {
+                    this.number += 1;
+                }
+            },
+            data: {
+                number: 10
+            }
+        });
+    </script>
+</body>
+</html>
