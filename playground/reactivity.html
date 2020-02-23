@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        var div = document.querySelector("#app");
+        // declare an object.
+        var viewModel = {};
+
+        // 객체에 직접 새로운 속성을 정의하거나 이미 존재하는 속성을 수정한 후, 그 객체를 반환합니다.
+        // Object.defineProperty(obejct, property name, {
+        //     description 
+        // });
+        Object.defineProperty(viewModel, 'str', {
+            // what happens when this property get called.
+            get: function() {
+                console.log("접근");
+                
+            },
+            // what happens when this property get new value.
+            set: function(newValue) {
+                console.log("할당", newValue);
+                div.innerHTML = newValue;
+            }
+        });
+    </script>
+</body>
+</html>
