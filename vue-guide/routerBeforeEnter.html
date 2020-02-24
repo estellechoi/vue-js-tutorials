@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <router-link to="/home">Home</router-link>
+            <router-link to="/login">Login</router-link>
+        </div>
+
+        <router-view></router-view>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script>
+        var Login = {
+            template: '<div>Login</div>'
+        }
+
+        var Home = {
+            template: '<div>Home</div>'
+        }
+
+        var router = new VueRouter({
+            routes: [
+                {
+                    path: '/login',
+                    component: Login,
+                    beforeEnter: function(to, from, next) {
+                        if (!isAuthenticated) {
+                            next();
+                        } else {
+                            next({path: '/home'});
+                        }
+
+
+
+                    }
+                },
+                {
+                    path: '/home',
+                    component: Home
+                }
+            ]
+        });
+
+        new Vue({
+            el: '#app',
+            router: router
+        });
+    </script>
+</body>
+</html>
