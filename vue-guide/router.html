@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <!-- <router-link to=""> is rendered to <a href=""> tag -->
+            <router-link to="/login">Login</router-link>
+            <router-link to="/main">Main</router-link>
+        </div>
+        <!-- show router view according to requested url -->
+        <router-view></router-view>
+    </div>
+
+    <!-- 
+        Router Library 
+        Include vue-router after Vue and it will install itself automatically
+    -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+    <script>
+        // components
+        var LoginComponent = {
+            template: '<div>login</div>'
+        }
+
+        var MainComponent = {
+            template: '<div>main</div>'
+        }
+
+        // VueRouter instance
+        var vueRouter = new VueRouter({
+            // url 에 # 없애기 
+            mode: 'history',
+            // routing information (array type)
+            // each obejct in the array is for each page.
+            // 1 page 1 component
+            routes: [
+                {
+                    path: '/login', // url for page
+                    component: LoginComponent // component for the url
+                },
+                {
+                    path: '/main',
+                    component: MainComponent
+                }
+            ]
+        });
+
+
+        // Vue instance (root component)
+        new Vue({
+            el: '#app',
+            // inject router into Vue instance
+            router: vueRouter
+        });
+
+    </script>
+</body>
+</html>
