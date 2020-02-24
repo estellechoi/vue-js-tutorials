@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- get data with props from Root Component -->
+        <app-header v-bind:propsdata="num"></app-header>
+        <!-- event 에 인자가 있다면, 호출되는 함수에 암묵적으로 인자가 전달된다. -->
+        <app-content v-on:pass="getNumber"></app-content>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var appHeader = {
+            template: '<div>Header</div>',
+            props: ['propsdata']
+        }
+
+        var appContent = {
+            template: '<div>Content<button v-on:click="passNumber">Pass Data</button></div>',
+            methods: {
+                passNumber: function() {
+                    this.$emit('pass', 10);
+                }
+            }
+        }
+
+        new Vue({
+            el: '#app',
+            components: {
+                'app-header': appHeader,
+                'app-content': appContent
+            },
+            data: {
+                num: 0
+            },
+            methods: {
+                getNumber: function(value) {
+                    this.num = value;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
