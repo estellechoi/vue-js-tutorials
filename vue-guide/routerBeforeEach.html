@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <router-link to="/login">Login</router-link>
+            <router-link to="/home">Home</router-link>
+        </div>
+        <!-- show router view according to requested url -->
+        <router-view></router-view>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script>
+        // components
+        var Home = {
+            template: '<div>Home</div>'
+        }
+
+        var Login = {
+            template: '<div>Login</div>'
+        }
+
+        // router
+        var router = new VueRouter({
+            mode: 'history',
+            routes: [
+                {
+                    path: '/login',
+                    component: Login,
+                    // 인증 (routing is pending) 
+                    meta: {
+                        authRequired: true
+                    }
+                },
+                {
+                    path: '/home',
+                    component: Home
+                }
+            ]
+        });
+
+        // * Navigation Guard (global) : 라우팅 전체 검사
+        // to : 이동할 url 정보가 담긴 라우터 객체
+        // from : 현재 url 정보가 담긴 라우터 객체
+        // next : to에서 지정한 url로 이동하기 위해 꼭 호출해야 하는 함수
+        router.beforeEach(function(to, from, next) {
+            if (to.matched.some(function(routerInfo) {
+                return routerInfo.meta.authRequired;
+            })) {
+                // 배열 중 하나라도 authRequired: true 이면 ...
+                alert('Login please.'); 
+            } else {
+                // 페이지 전환 성공
+                console.log('routing success : ' + to.path);
+                next();
+            }
+        });
+
+        // Vue instance
+        new Vue({
+            el: '#app',
+            // inject router into Vue instance
+            router: router
+        });
+
+    </script>
+</body>
+</html>
