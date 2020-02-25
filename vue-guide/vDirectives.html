@@ -12,20 +12,24 @@
             * Make DOM elements reactive.
             <p id="estelle">{{ str }}</p>
         -->
+        <!-- v-bind : binding Vue data to DOM attributes reactively -->
         <p v-bind:id="userid" v-bind:class="name">{{ str }}</p>
         <p> {{ num }} </p>
         <p> {{ doubleNum }} </p>
-        <!-- v-if="false" : DOM 삭제 -->
+        <!-- v-if="false" : make DOM element does not exist at all -->
         <div v-if="loginLoading">
             Loading...
         </div>
         <div v-else>
             Test user has been logged in.
         </div>
-        <!-- v-show="false" : CSS display:none; -->
+        <!-- v-show="false" : set CSS display:none; for this DOM element -->
         <div v-show="loginLoading">
             Loading...
         </div>
+        <!-- v-model : form input binding -->
+        <input type="text" v-model="msg" placeholder="edit me">
+        <p>Message : {{ msg }}</p>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -37,7 +41,8 @@
                 num: 10,
                 userid:  'estelle',
                 name: 'youjin',
-                loginLoading: true
+                loginLoading: true,
+                msg: ''
             },
             // * computed : 계산된 속성
             computed: {
