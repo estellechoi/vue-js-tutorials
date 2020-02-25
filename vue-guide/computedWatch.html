@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{ num }}
+        {{ doubleNum }}
+        <button v-on:click="increaseNum">Increase</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                num: 10
+            },
+            // computed : validation (lighter than watch)
+            // it is often a better idea to use a computed property rather than an imperative watch callback. 
+            computed: {
+                doubleNum: function() {
+                    return this.num * 2;
+                }
+            },
+            // watch : when watched data changed, call function(newValue, oldValue); 
+            watch: {
+                num: function(newValue, oldVlue) {
+                    this.logText(newValue, oldVlue);
+                }
+            },
+            methods: {
+                increaseNum: function() {
+                    this.num += 1;
+                },
+                logText: function(after, before) {
+                    console.log('changed : ' + before + ' -> ' + after);
+                    //axios.get(after); // async
+                }
+            }
+        });
+    </script>
+</body>
+</html>
