@@ -8,9 +8,24 @@
 </head>
 <body>
     <div id="app">
-        <p>{{ str }}</p>
+        <!--
+            * Make DOM elements reactive.
+            <p id="estelle">{{ str }}</p>
+        -->
+        <p v-bind:id="userid" v-bind:class="name">{{ str }}</p>
         <p> {{ num }} </p>
         <p> {{ doubleNum }} </p>
+        <!-- v-if="false" : DOM 삭제 -->
+        <div v-if="loginLoading">
+            Loading...
+        </div>
+        <div v-else>
+            Test user has been logged in.
+        </div>
+        <!-- v-show="false" : CSS display:none; -->
+        <div v-show="loginLoading">
+            Loading...
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -20,8 +35,13 @@
             data: {
                 str: 'Hi',
                 num: 10,
+                userid:  'estelle',
+                name: 'youjin',
+                loginLoading: true
             },
+            // * computed : 계산된 속성
             computed: {
+                // 함수로 만든다.
                 doubleNum: function() {
                     return this.num * 2;
                 }
