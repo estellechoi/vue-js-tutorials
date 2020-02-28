@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Document</title>
+    <style>
+        .warning {
+            color: tomato;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 
+            bind Vue data to DOM elements
+            <p v-bind:class="className">Hello Vue</p>
+            <p class="blue-text"></p>
+        -->
+        <!-- 
+            bind Vue boolean data to apply a class to elements.
+            <p v-bind:class="{ warning : isError }">Hello Vue</p>
+       
+            if isError === true,
+            <p class="warning"></p>
+    -->
+
+        <!-- using Vue "computed" -->
+        <p v-bind:class="errorTextColor">Hello Vue</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                className: 'blue-text',
+                isError: false
+            },
+            computed: {
+                errorTextColor: function() {
+                    // if isError === ture, return 'warning' of left side, else return null of the right.
+                    return this.isError ? 'warning' : null;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
