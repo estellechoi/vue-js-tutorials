@@ -33,6 +33,8 @@
 <script>
 export default {
   name: 'HelloWorld',
+  // props validation
+  // props: ['msg']
   props: {
     msg: String
   }
