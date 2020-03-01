@@ -1,33 +1,30 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <!-- use component with tag-->
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <!-- The template root requires exactly one element. -->
+  <div>
+    {{ str }}
   </div>
 </template>
 
 <script>
-// import component
-import HelloWorld from './components/HelloWorld.vue'
-
-// Vue instance properties and componet properties can be declared here.
 export default {
-  name: 'App',
-  components: {
-    // add imported component
-    // 'hello-world': HelloWorld
-    HelloWorld
+  /*
+  new Vue({
+    data: {
+      str: 'hi'
+    }
+  });
+  */
+
+  // data property should be a function returning an obeject.
+  // so that components cannot refer to data of other components. (?)
+  data: function() {
+    return {
+      str: 'hi'
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
