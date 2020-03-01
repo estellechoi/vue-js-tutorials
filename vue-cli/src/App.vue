@@ -2,7 +2,7 @@
   <!-- The template root requires exactly one element. -->
   <div id="app">
     <!-- props -->
-    <AppHeader v-bind:propsdata="str"></AppHeader>
+    <AppHeader v-bind:propsdata="str" v-on:passEvent="renewString"></AppHeader>
   </div>
 </template>
 
@@ -29,6 +29,11 @@ export default {
   components: {
     // 'app-header': AppHeader
     AppHeader
+  },
+  methods: {
+    renewString: function() {
+      this.str = 'Renewed';
+    }
   }
 }
 </script>
