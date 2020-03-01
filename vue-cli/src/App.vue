@@ -1,11 +1,15 @@
 <template>
   <!-- The template root requires exactly one element. -->
-  <div>
-    {{ str }}
+  <div id="app">
+    <!-- props -->
+    <AppHeader v-bind:propsdata="str"></AppHeader>
   </div>
 </template>
 
 <script>
+// imports component file into a variable.
+import AppHeader from './components/AppHeader.vue'
+
 export default {
   /*
   new Vue({
@@ -19,8 +23,12 @@ export default {
   // so that components cannot refer to data of other components. (?)
   data: function() {
     return {
-      str: 'hi'
+      str: 'Header'
     }
+  },
+  components: {
+    // 'app-header': AppHeader
+    AppHeader
   }
 }
 </script>
