@@ -1,21 +1,39 @@
 <template>
-    <!-- Sigle File Componet -->
     <!-- vue : .vue file 자동완성 단축키 -->
-    <!-- HTML -->
-    <div>Hello Vue</div>
+    <!-- Sigle File Componet -->
+
+    <!-- HTML -->    
+    <div>
+        <img alt="Vue logo" src="./assets/logo.png">
+        <HelloWorld msg="Welcome to Your Vue.js App"/>
+    </div>  
 </template>
 
 <script>
+// import component
+import HelloWorld from './components/HelloWorld.vue'
+
+// Vue instance properties and componet properties can be declared here.
 export default {
     // JavaScript
-    methods: {
-        getList: function() {
-
-        }
-    }
+  name: 'A',
+  components: {
+    // add imported component
+    // 'hello-world': HelloWorld
+    HelloWorld
+  }
 }
 </script>
 
 <style>
-    /* CSS */
+/* CSS */
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+
 </style>
