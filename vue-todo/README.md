@@ -1,18 +1,28 @@
-# vue-todo
+# VUE-TODO : Todo Application Project for Self-study
 
-> A Vue.js project
+## Create Project
+
+```bash
+vue init webpack-simple vue-todo
+```
 
 ## Build Setup
 
-``` bash
-# install dependencies
+### Install dependencies
+
+```bash
+cd vue-todo
 npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
 ```
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+### Serve with hot reload at localhost:8080
+
+```bash
+npm run dev
+```
+
+### Build for production with minification
+
+```bash
+npm run build
+```
