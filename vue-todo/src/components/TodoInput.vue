@@ -13,6 +13,7 @@
 export default {
   data: function() {
     return {
+      todoItems: [],
       newTodoItem: ""
     };
   },
