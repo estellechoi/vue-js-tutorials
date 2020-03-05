@@ -2,7 +2,7 @@
   <div>
     <ul>
       <!-- array length => the number of <li> -->
-      <li class="shadow" v-for="(todoItem, index) in todoItems" v-bind:key="todoItem.item">
+      <li class="shadow" v-for="(todoItem, index) in propsTodoItems" v-bind:key="todoItem.item">
         <!-- checkbox icon-->
         <!-- v-bind:class : html 속성인 class 에 동적으로 값을 부여하기 -->
         <i
@@ -15,7 +15,7 @@
         <span v-bind:class="{ textCompleted : todoItem.completed }">{{ todoItem.item }}</span>
 
         <!-- remove button icon-->
-        <span class="removeBtn" v-on:click="removeTodo(index)">
+        <span class="removeBtn" v-on:click="removeTodo(todoItem, index)">
           <i class="fas fa-trash-alt"></i>
         </span>
       </li>
@@ -25,43 +25,14 @@
 
 <script>
 export default {
-  data: function() {
-    return {
-      todoItems: []
-    };
-  },
+  // get props data from parent component App.vue
+  props: ["propsTodoItems"],
   methods: {
-    removeTodo: function(i) {
-      // remove from localStorage
-      // removeItem('key');
-      localStorage.removeItem(localStorage.key(i));
-      // remove from vue data
-      // array.splice(n, i) : return new array after removing n items from the item of index i.
-      this.todoItems.splice(i, 1);
+    removeTodo: function(todoItem, i) {
+      this.$emit("removeTodoItem", todoItem, i);
     },
     toggleComplete: function(todoItem, i) {
-      // toggle false/true
-      todoItem.completed = !todoItem.completed;
-      // localStorage does not offer update api, so update it as following.
-      localStorage.removeItem(localStorage.key(i));
-      localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
-    }
-  },
-  // when instance created
-  created: function() {
-    if (localStorage.length > 0) {
-      for (var i = 0; i < localStorage.length; i++) {
-        // loglevel:webpack-dev-server : 자동주입값 제외하기
-        if (localStorage.key(i) !== "loglevel:webpack-dev-server") {
-          // .key(i) : 인덱스 i번째 key 이름을 반환
-          // .getItem('key') : key 에 해당하는 value 반환
-          // JSON.parse('object') : parse string data to objects.
-          // ↔︎ JSON.stringify(object)
-          this.todoItems.push(
-            JSON.parse(localStorage.getItem(localStorage.key(i)))
-          );
-        }
-      }
+      this.$emit("toggleTodoItem", todoItem, i);
     }
   }
 };
