@@ -1,6 +1,10 @@
 <template>
   <div>
-    <ul>
+    <!-- 
+        ul tag was replaced with this for CSS transition effect offered by Vue.js
+        name prop should fit CSS selector
+    -->
+    <transition-group name="list" tag="ul">
       <!-- array length => the number of <li> -->
       <li class="shadow" v-for="(todoItem, index) in propsTodoItems" v-bind:key="todoItem.item">
         <!-- checkbox icon-->
@@ -19,7 +23,7 @@
           <i class="fas fa-trash-alt"></i>
         </span>
       </li>
-    </ul>
+    </transition-group>
   </div>
 </template>
 
@@ -76,5 +80,19 @@ li {
 .textCompleted {
   text-decoration: line-through;
   color: #b3adad;
+}
+
+/* transition effect for list items */
+/* from Vue.js official doc */
+
+.list-enter-active,
+.list-leave-active {
+  transition: all 1s;
+}
+
+.list-enter,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
 }
 </style>
