@@ -40,6 +40,7 @@ export default {
         this.$emit("addNewTodo", this.newTodoItem);
         this.clearInput();
       } else {
+        // v-on:keyup.enter 이벤트시 2번 작동하면서, add + showModal 둘다 실행됨 (!! error !!)
         this.showModal = !this.showModal;
       }
     },
