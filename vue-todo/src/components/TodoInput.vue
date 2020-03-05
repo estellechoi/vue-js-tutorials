@@ -13,15 +13,21 @@
 export default {
   data: function() {
     return {
-      todoItems: [],
       newTodoItem: ""
     };
   },
   methods: {
     addTodo: function() {
-      // window.localStorage.setItem('key', 'value');
-      localStorage.setItem(this.newTodoItem, this.newTodoItem);
-      this.clearInput();
+      if (this.newTodoItem !== "") {
+        var obj = {
+          completed: false,
+          item: this.newTodoItem // input value
+        };
+        // window.localStorage.setItem('key', 'value');
+        // JSON.stringify(object); parse obejcts to string data
+        localStorage.setItem(this.newTodoItem, JSON.stringify(obj));
+        this.clearInput();
+      }
     },
     clearInput: function() {
       this.newTodoItem = "";
