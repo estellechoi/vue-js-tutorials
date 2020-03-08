@@ -1,7 +1,7 @@
 <template>
   <!-- exact one root element for a vue component-->
   <header>
-    <h1>{{ this.$store.state.headerText }}</h1>
+    <h1>TODO</h1>
   </header>
 </template>
 
