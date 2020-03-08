@@ -20,13 +20,13 @@ import TodoList from "./components/TodoList.vue";
 import TodoFooter from "./components/TodoFooter.vue";
 
 export default {
-  data: function() {
+  data() {
     return {
       todoItems: []
     };
   },
   methods: {
-    addOneItem: function(newTodoItem) {
+    addOneItem(newTodoItem) {
       // * const : cannot override
       const obj = {
         completed: false,
@@ -39,7 +39,7 @@ export default {
       // add to vue data
       this.todoItems.push(obj);
     },
-    removeOneItem: function(todoItem, i) {
+    removeOneItem(todoItem, i) {
       // removeItem('key'); remove from localStorage
       // console.log(localStorage.key(i));
       localStorage.removeItem(todoItem.item);
@@ -48,7 +48,7 @@ export default {
       // array.splice(n, i) : return new array after removing n items from the item of index i.
       this.todoItems.splice(i, 1);
     },
-    toggleOneItem: function(todoItem, i) {
+    toggleOneItem(todoItem, i) {
       // toggle vue data false/true
       // but 자식 컴포넌트에 전달한 props data를 부모 컴포넌트에서 다시 전달받아 조작하는 것은 not good.
       // todoItem.completed = !todoItem.completed;
@@ -62,13 +62,13 @@ export default {
         JSON.stringify(this.todoItems[i])
       );
     },
-    clearAllItems: function() {
+    clearAllItems() {
       localStorage.clear();
       this.todoItems = [];
     }
   },
   // when instance created
-  created: function() {
+  created() {
     if (localStorage.length > 0) {
       // * let : in for loop, the number changes repeatedly.
       for (let i = 0; i < localStorage.length; i++) {
