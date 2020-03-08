@@ -39,10 +39,13 @@ export default {
   // props: ["propsTodoItems"],
   methods: {
     removeTodo(todoItem, i) {
-      this.$emit("removeTodoItem", todoItem, i);
+      // this.$emit("removeTodoItem", todoItem, i);
+      // 2개 이상의 인자는 객체로 묶어 보낸다.
+      this.$store.commit("removeOneItem", { todoItem, i });
     },
     toggleComplete(todoItem, i) {
-      this.$emit("toggleTodoItem", todoItem, i);
+      // this.$emit("toggleTodoItem", todoItem, i);
+      this.$store.commit("toggleOneItem", { todoItem, i });
     }
   }
 };
