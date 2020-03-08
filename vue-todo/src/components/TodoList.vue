@@ -6,17 +6,23 @@
     -->
     <transition-group name="list" tag="ul">
       <!-- array length => the number of <li> -->
-      <li class="shadow" v-for="(todoItem, index) in propsTodoItems" v-bind:key="todoItem.item">
+      <li
+        class="shadow"
+        v-for="(todoItem, index) in this.$store.state.todoItems"
+        v-bind:key="todoItem.item"
+      >
         <!-- checkbox icon-->
         <!-- v-bind:class : html 속성인 class 에 동적으로 값을 부여하기 -->
         <i
           class="far fa-check-square checkboxBtn"
-          v-bind:class="{ checkboxBtnCompleted : todoItem.completed }"
+          v-bind:class="{ checkboxBtnCompleted: todoItem.completed }"
           v-on:click="toggleComplete(todoItem, index)"
         ></i>
 
         <!-- todo item -->
-        <span v-bind:class="{ textCompleted : todoItem.completed }">{{ todoItem.item }}</span>
+        <span v-bind:class="{ textCompleted: todoItem.completed }">
+          {{ todoItem.item }}
+        </span>
 
         <!-- remove button icon-->
         <span class="removeBtn" v-on:click="removeTodo(todoItem, index)">
