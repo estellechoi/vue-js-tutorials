@@ -1,14 +1,17 @@
 <template>
   <div id="app">
     <todo-header></todo-header>
-    <todo-input v-on:addNewTodo="addOneItem"></todo-input>
-    <!-- props binding works whenever its target data change. -->
-    <todo-list
-      v-bind:propsTodoItems="todoItems"
-      v-on:removeTodoItem="removeOneItem"
-      v-on:toggleTodoItem="toggleOneItem"
-    ></todo-list>
-    <todo-footer v-on:clearTodos="clearAllItems"></todo-footer>
+    <!--  v-on:addNewTodo="addOneItem" -->
+    <todo-input></todo-input>
+    <!-- 
+        props binding works whenever its target data change. 
+        v-bind:propsTodoItems="todoItems"
+        v-on:removeTodoItem="removeOneItem"
+        v-on:toggleTodoItem="toggleOneItem"
+    -->
+    <todo-list></todo-list>
+    <!-- v-on:clearTodos="clearAllItems" -->
+    <todo-footer></todo-footer>
   </div>
 </template>
 
@@ -25,6 +28,7 @@ export default {
       todoItems: []
     };
   },
+  /*
   methods: {
     addOneItem(newTodoItem) {
       // * const : cannot override
@@ -48,6 +52,7 @@ export default {
       // array.splice(n, i) : return new array after removing n items from the item of index i.
       this.todoItems.splice(i, 1);
     },
+
     toggleOneItem(todoItem, i) {
       // toggle vue data false/true
       // but 자식 컴포넌트에 전달한 props data를 부모 컴포넌트에서 다시 전달받아 조작하는 것은 not good.
@@ -67,6 +72,7 @@ export default {
       this.todoItems = [];
     }
   },
+  */
   components: {
     // as vue style-guide
     "todo-header": TodoHeader,

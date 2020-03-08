@@ -9,7 +9,8 @@ export default {
   methods: {
     // ECMA2015 syntax for object literals.
     clearTodo() {
-      this.$emit("clearTodos");
+      // this.$emit("clearTodos");
+      this.$store.commit("clearAllItems");
     }
   }
 };

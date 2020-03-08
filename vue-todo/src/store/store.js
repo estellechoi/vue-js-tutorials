@@ -28,7 +28,50 @@ const storage = {
 
 // Vuex
 export const store = new Vuex.Store({
+  // data
   state: {
     todoItems: storage.fetch()
+  },
+  // methods (payload : 인자)
+  mutations: {
+    addOneItem(state, newTodoItem) {
+      const obj = {
+        completed: false,
+        item: newTodoItem
+      };
+      // localStorage.setItem('key', 'value');
+      // JSON.stringify(object); parse obejcts to string data
+      localStorage.setItem(newTodoItem, JSON.stringify(obj));
+
+      // add to state
+      state.todoItems.push(obj);
+    },
+    removeOneItem(state, payload) {
+      // removeItem('key'); remove from localStorage
+      // console.log(localStorage.key(i));
+      localStorage.removeItem(payload.todoItem.item);
+
+      // remove from state
+      // array.splice(n, i) : return new array after removing n items from the item of index i.
+      state.todoItems.splice(payload.i, 1);
+    },
+    toggleOneItem(state, payload) {
+      // toggle vue data false/true
+      // but 자식 컴포넌트에 전달한 props data를 부모 컴포넌트에서 다시 전달받아 조작하는 것은 not good.
+      // todoItem.completed = !todoItem.completed;
+      state.todoItems[payload.i].completed = !state.todoItems[payload.i]
+        .completed;
+
+      // update localStorage
+      localStorage.removeItem(payload.todoItem.item);
+      localStorage.setItem(
+        state.todoItems[payload.i].item,
+        JSON.stringify(state.todoItems[payload.i])
+      );
+    },
+    clearAllItems() {
+      localStorage.clear();
+      state.todoItems = [];
+    }
   }
 });
