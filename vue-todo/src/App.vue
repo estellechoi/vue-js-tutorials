@@ -67,24 +67,6 @@ export default {
       this.todoItems = [];
     }
   },
-  // when instance created
-  created() {
-    if (localStorage.length > 0) {
-      // * let : in for loop, the number changes repeatedly.
-      for (let i = 0; i < localStorage.length; i++) {
-        // loglevel:webpack-dev-server : 자동주입값 제외하기
-        if (localStorage.key(i) !== "loglevel:webpack-dev-server") {
-          // .key(i) : 인덱스 i번째 key 이름을 반환
-          // .getItem('key') : key 에 해당하는 value 반환
-          // JSON.parse('object') : parse string data to objects.
-          // ↔︎ JSON.stringify(object)
-          this.todoItems.push(
-            JSON.parse(localStorage.getItem(localStorage.key(i)))
-          );
-        }
-      }
-    }
-  },
   components: {
     // as vue style-guide
     "todo-header": TodoHeader,
