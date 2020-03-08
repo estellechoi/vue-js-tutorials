@@ -26,3 +26,9 @@ npm run dev
 ```bash
 npm run build
 ```
+
+## Use Vuex
+
+```bash
+npm install vuex --save
+```
