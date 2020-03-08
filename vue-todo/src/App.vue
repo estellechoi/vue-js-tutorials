@@ -27,7 +27,8 @@ export default {
   },
   methods: {
     addOneItem: function(newTodoItem) {
-      var obj = {
+      // * const : cannot override
+      const obj = {
         completed: false,
         item: newTodoItem // input value from child component
       };
@@ -69,7 +70,8 @@ export default {
   // when instance created
   created: function() {
     if (localStorage.length > 0) {
-      for (var i = 0; i < localStorage.length; i++) {
+      // * let : in for loop, the number changes repeatedly.
+      for (let i = 0; i < localStorage.length; i++) {
         // loglevel:webpack-dev-server : 자동주입값 제외하기
         if (localStorage.key(i) !== "loglevel:webpack-dev-server") {
           // .key(i) : 인덱스 i번째 key 이름을 반환
