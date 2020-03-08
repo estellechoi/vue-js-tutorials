@@ -7,7 +7,8 @@
 <script>
 export default {
   methods: {
-    clearTodo: function() {
+    // ECMA2015 syntax for object literals.
+    clearTodo() {
       this.$emit("clearTodos");
     }
   }
