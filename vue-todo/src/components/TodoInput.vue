@@ -37,10 +37,13 @@ export default {
     addTodo() {
       if (this.newTodoItem !== "") {
         // $emit('event', parameter, parameter, ..);
-        this.$emit("addNewTodo", this.newTodoItem);
+        // this.$emit("addNewTodo", this.newTodoItem);
+        const text = this.newTodoItem.trim();
+        // call one of mutations of store.js.
+        // this.$store.commit("mutation", parameter);
+        this.$store.commit("addOneItem", text);
         this.clearInput();
       } else {
-        // v-on:keyup.enter 이벤트시 2번 작동하면서, add + showModal 둘다 실행됨 (!! error !!)
         this.showModal = !this.showModal;
       }
     },
