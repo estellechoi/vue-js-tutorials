@@ -9,7 +9,7 @@
 export default {};
 </script>
 
-<!-- Style only for this component (not extended in child elements) -->
+<!-- Style valid only for this component (not extended in child elements) -->
 <style scoped>
 h1 {
   color: #2f3b52;
