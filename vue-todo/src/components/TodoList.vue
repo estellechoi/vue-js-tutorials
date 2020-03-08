@@ -36,7 +36,7 @@
 <script>
 export default {
   // get props data from parent component App.vue
-  props: ["propsTodoItems"],
+  // props: ["propsTodoItems"],
   methods: {
     removeTodo(todoItem, i) {
       this.$emit("removeTodoItem", todoItem, i);
