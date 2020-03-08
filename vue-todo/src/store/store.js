@@ -26,7 +26,7 @@ const storage = {
   }
 };
 
-// Vuex
+// Vuex instance
 export const store = new Vuex.Store({
   // data
   state: {
