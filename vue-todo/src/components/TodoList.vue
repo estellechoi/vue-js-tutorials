@@ -32,10 +32,10 @@ export default {
   // get props data from parent component App.vue
   props: ["propsTodoItems"],
   methods: {
-    removeTodo: function(todoItem, i) {
+    removeTodo(todoItem, i) {
       this.$emit("removeTodoItem", todoItem, i);
     },
-    toggleComplete: function(todoItem, i) {
+    toggleComplete(todoItem, i) {
       this.$emit("toggleTodoItem", todoItem, i);
     }
   }
