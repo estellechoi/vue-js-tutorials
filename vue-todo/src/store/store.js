@@ -30,9 +30,12 @@ const storage = {
 export const store = new Vuex.Store({
   // data
   state: {
-    todoItems: storage.fetch()
+    todoItems: storage.fetch(),
+    playNum: 10,
+    product: null
   },
   // methods (payload : 인자)
+  // mutations 에는 동기처리 로직만 넣어야 한다. 시간차를 두고 state 값을 변경하는 경우 그 변화를 추적하기 어렵기 때문이다.
   mutations: {
     addOneItem(state, newTodoItem) {
       const obj = {
@@ -72,6 +75,25 @@ export const store = new Vuex.Store({
     clearAllItems() {
       localStorage.clear();
       state.todoItems = [];
+    },
+    doubleNumber(state) {
+      state.playNum++;
+    },
+    setData(state, fetchedData) {
+      state.product = fetchedData;
+    }
+  },
+  // actions make mutations async (비동기)
+  // 데이터 요청, Promise, ES6 async 등 비동기 처리는 모두 actions에 선언
+  actions: {
+    // 컴포넌트에서 호출할 때는 this.$store.dispatch("delayDoubleNumber");
+    delayDoubleNumber(context) {
+      // context 객체로 store 의 메소드와 속성에 접근 가능
+      setTimeout(() => context.commit("doubleNumber"), 2000);
+    },
+    fetchProductData(context) {
+      // ajax
+      return axios.get("").then(res => context.commit("setData", res));
     }
   }
 });
