@@ -34,6 +34,12 @@ export const store = new Vuex.Store({
     playNum: 10,
     product: null
   },
+  // getters
+  getters: {
+    storedTodoItems(state) {
+      return state.todoItems;
+    }
+  },
   // methods (payload : 인자)
   // mutations 에는 동기처리 로직만 넣어야 한다. 시간차를 두고 state 값을 변경하는 경우 그 변화를 추적하기 어렵기 때문이다.
   mutations: {
