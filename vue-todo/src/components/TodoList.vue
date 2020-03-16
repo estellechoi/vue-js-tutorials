@@ -8,7 +8,7 @@
       <!-- array length => the number of <li> -->
       <li
         class="shadow"
-        v-for="(todoItem, index) in this.$store.state.todoItems"
+        v-for="(todoItem, index) in this.storedTodoItems"
         v-bind:key="todoItem.item"
       >
         <!-- checkbox icon-->
@@ -20,9 +20,7 @@
         ></i>
 
         <!-- todo item -->
-        <span v-bind:class="{ textCompleted: todoItem.completed }">
-          {{ todoItem.item }}
-        </span>
+        <span v-bind:class="{ textCompleted: todoItem.completed }">{{ todoItem.item }}</span>
 
         <!-- remove button icon-->
         <span class="removeBtn" v-on:click="removeTodo(todoItem, index)">
@@ -34,6 +32,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   // get props data from parent component App.vue
   // props: ["propsTodoItems"],
@@ -47,6 +47,12 @@ export default {
       // this.$emit("toggleTodoItem", todoItem, i);
       this.$store.commit("toggleOneItem", { todoItem, i });
     }
+  },
+  computed: {
+    // todoItems() {
+    //   return this.$store.getters.storedTodoItems;
+    // }
+    ...mapGetters(["storedTodoItems"])
   }
 };
 </script>
