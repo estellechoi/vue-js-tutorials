@@ -16,14 +16,14 @@
         <i
           class="far fa-check-square checkboxBtn"
           v-bind:class="{ checkboxBtnCompleted: todoItem.completed }"
-          v-on:click="toggleComplete(todoItem, index)"
+          v-on:click="toggleComplete({todoItem, index})"
         ></i>
 
         <!-- todo item -->
         <span v-bind:class="{ textCompleted: todoItem.completed }">{{ todoItem.item }}</span>
 
         <!-- remove button icon-->
-        <span class="removeBtn" v-on:click="removeTodo(todoItem, index)">
+        <span class="removeBtn" v-on:click="removeTodo({todoItem, index})">
           <i class="fas fa-trash-alt"></i>
         </span>
       </li>
@@ -32,21 +32,29 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
   // get props data from parent component App.vue
   // props: ["propsTodoItems"],
   methods: {
+    // mapMutations 인자가 있다면 암묵적으로 넘겨준다.
+    ...mapMutations({
+      removeTodo: "removeOneItem",
+      toggleComplete: "toggleOneItem"
+    })
+    /*
     removeTodo(todoItem, i) {
       // this.$emit("removeTodoItem", todoItem, i);
       // 2개 이상의 인자는 객체로 묶어 보낸다.
       this.$store.commit("removeOneItem", { todoItem, i });
     },
+    
     toggleComplete(todoItem, i) {
       // this.$emit("toggleTodoItem", todoItem, i);
       this.$store.commit("toggleOneItem", { todoItem, i });
     }
+    */
   },
   computed: {
     // todoItems() {

@@ -5,13 +5,18 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
   methods: {
-    // ECMA2015 syntax for object literals.
+    ...mapMutations({
+      clearTodo: "clearAllItems"
+    })
+    /*
     clearTodo() {
       // this.$emit("clearTodos");
       this.$store.commit("clearAllItems");
     }
+    */
   }
 };
 </script>

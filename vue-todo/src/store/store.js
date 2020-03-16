@@ -62,23 +62,23 @@ export const store = new Vuex.Store({
 
       // remove from state
       // array.splice(n, i) : return new array after removing n items from the item of index i.
-      state.todoItems.splice(payload.i, 1);
+      state.todoItems.splice(payload.index, 1);
     },
     toggleOneItem(state, payload) {
       // toggle vue data false/true
       // but 자식 컴포넌트에 전달한 props data를 부모 컴포넌트에서 다시 전달받아 조작하는 것은 not good.
       // todoItem.completed = !todoItem.completed;
-      state.todoItems[payload.i].completed = !state.todoItems[payload.i]
+      state.todoItems[payload.index].completed = !state.todoItems[payload.index]
         .completed;
 
       // update localStorage
       localStorage.removeItem(payload.todoItem.item);
       localStorage.setItem(
-        state.todoItems[payload.i].item,
-        JSON.stringify(state.todoItems[payload.i])
+        state.todoItems[payload.index].item,
+        JSON.stringify(state.todoItems[payload.index])
       );
     },
-    clearAllItems() {
+    clearAllItems(state) {
       localStorage.clear();
       state.todoItems = [];
     },
