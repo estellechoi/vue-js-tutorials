@@ -27,7 +27,8 @@ vue init webpack-simple project-directory-name
 ### Configure webpack
 
 - vue cli 3.x : vue.config.js
-  See [Vue Cli Configuration Reference](https://cli.vuejs.org/guide/webpack.html#simple-configuration)
+
+  > See [Vue Cli Configuration Reference](https://cli.vuejs.org/guide/webpack.html#simple-configuration)
 
 - vue cli 2.x : webpack.config.js
 
