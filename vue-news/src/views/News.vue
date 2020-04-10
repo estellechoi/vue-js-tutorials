@@ -17,6 +17,7 @@ export default {
 			.then(res => (this.newsList = res.data))
 			.catch(error => console.log(error));
 	}
+	// beforeMount() {}
 };
 </script>
 
