@@ -3,18 +3,21 @@ import VueRouter from "vue-router";
 import News from "../views/News.vue";
 import Ask from "../views/Ask.vue";
 import Jobs from "../views/Jobs.vue";
+import UserInfo from "../views/UserInfo.vue";
+import ItemBox from "../views/ItemBox.vue";
 
 Vue.use(VueRouter);
 
 // vue-router config
 export const router = new VueRouter({
+	mode: "history", // history mode removes # in url.
 	routes: [
 		{
-			path: "/", // url
+			path: "/",
 			redirect: "/news"
 		},
 		{
-			path: "/news", // url
+			path: "/news",
 			component: News
 		},
 		{
@@ -24,6 +27,14 @@ export const router = new VueRouter({
 		{
 			path: "/jobs",
 			component: Jobs
+		},
+		{
+			path: "/itemBox",
+			component: ItemBox
+		},
+		{
+			path: "/userInfo",
+			component: UserInfo
 		}
 	]
 });
