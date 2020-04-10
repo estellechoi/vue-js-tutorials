@@ -10,6 +10,10 @@ Vue.use(VueRouter);
 export const router = new VueRouter({
 	routes: [
 		{
+			path: "/", // url
+			redirect: "/news"
+		},
+		{
 			path: "/news", // url
 			component: News
 		},
