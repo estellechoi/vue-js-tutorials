@@ -1,17 +1,17 @@
 # vue-news
 
-> This project is created by vue cli 4.x
+> This project was created by vue cli 4.x
 
-## Project setup
-
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
+## Create project
 
 ```
-npm run serve
+vue create vue-news
+```
+
+### Install vue-router
+
+```
+npm i vue-router
 ```
 
 ### Compiles and minifies for production
