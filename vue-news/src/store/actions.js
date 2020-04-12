@@ -5,6 +5,8 @@ export default {
 	FETCH_NEWS(context) {
 		fetchNewsList()
 			.then(res => {
+				console.log(res);
+
 				context.commit("SET_NEWS", res.data); // commit to mutations
 			})
 			.catch(err => console.log(err));
@@ -13,6 +15,8 @@ export default {
 	FETCH_JOBS({ commit }) {
 		fetchJobsList()
 			.then(({ data }) => {
+				console.log(data);
+
 				commit("SET_JOBS", data);
 			})
 			.catch(err => console.log(err));
@@ -20,6 +24,8 @@ export default {
 	FETCH_ASKS(context) {
 		fetchAskList()
 			.then(res => {
+				console.log(res.data);
+
 				context.commit("SET_ASKS", res.data);
 			})
 			.catch(err => console.log(err));

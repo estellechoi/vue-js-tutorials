@@ -1,8 +1,9 @@
 <template>
 	<div>
-		<div v-for="(ask, index) in fetchedAsks" :key="index">
-			{{ ask.title }}
-		</div>
+		<p v-for="(item, index) in fetchedAsks" :key="index">
+			<a :href="item.url">{{ item.title }}</a>
+			<small>{{ item.time_ago }} by {{ item.user }}</small>
+		</p>
 	</div>
 </template>
 
@@ -11,12 +12,15 @@ import { mapGetters } from "vuex";
 export default {
 	computed: {
 		...mapGetters(["fetchedAsks"])
+
 		// ...mapGetters({
 		// 	fetchedAsks: "fetchedAsks"
 		// })
+
 		// ...mapState({
 		// 	asks: state => state.asks
 		// })
+
 		// ask() {
 		// 	return this.$store.state;
 		// }

@@ -1,8 +1,9 @@
 <template>
 	<div>
-		<div v-for="(job, index) in this.$store.state.jobs" :key="index">
-			{{ job.title }}
-		</div>
+		<p v-for="(item, index) in this.$store.state.jobs" :key="index">
+			<a :href="item.url">{{ item.title }}</a>
+			<small>{{ item.time_ago }}, {{ item.domain }}</small>
+		</p>
 	</div>
 </template>
 
