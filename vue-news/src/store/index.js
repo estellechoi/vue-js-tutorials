@@ -32,10 +32,11 @@ export const store = new Vuex.Store({
 				})
 				.catch(err => console.log(err));
 		},
-		FETCH_JOBS(context) {
+		// 파라미터가 객체일 때 { } 를 사용하여 객체 내의 속성에 바로 접근할 수 있다.
+		FETCH_JOBS({ commit }) {
 			fetchJobsList()
-				.then(res => {
-					context.commit("SET_JOBS", res.data);
+				.then(({ data }) => {
+					commit("SET_JOBS", data);
 				})
 				.catch(err => console.log(err));
 		},
