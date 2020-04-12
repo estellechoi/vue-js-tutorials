@@ -32,8 +32,9 @@ export const router = new VueRouter({
 			path: "/itemBox",
 			component: ItemBox
 		},
+		// Dynamic Matching (동적 라우트 매칭)
 		{
-			path: "/userInfo",
+			path: "/userInfo/:id",
 			component: UserInfo
 		}
 	]

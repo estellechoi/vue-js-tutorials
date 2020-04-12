@@ -1,12 +1,15 @@
-import { fetchNewsList, fetchJobsList, fetchAskList } from "../api/index.js";
+import {
+	fetchNewsList,
+	fetchJobsList,
+	fetchAskList,
+	fetchUserInfo
+} from "../api/index.js";
 
 // actions: 비동기 호출 (백엔드 API로 부터 데이터를 받아온다.)
 export default {
 	FETCH_NEWS(context) {
 		fetchNewsList()
 			.then(res => {
-				console.log(res);
-
 				context.commit("SET_NEWS", res.data); // commit to mutations
 			})
 			.catch(err => console.log(err));
@@ -15,8 +18,6 @@ export default {
 	FETCH_JOBS({ commit }) {
 		fetchJobsList()
 			.then(({ data }) => {
-				console.log(data);
-
 				commit("SET_JOBS", data);
 			})
 			.catch(err => console.log(err));
@@ -24,9 +25,14 @@ export default {
 	FETCH_ASKS(context) {
 		fetchAskList()
 			.then(res => {
-				console.log(res.data);
-
 				context.commit("SET_ASKS", res.data);
+			})
+			.catch(err => console.log(err));
+	},
+	FETCH_USERINFO({ commit }, userId) {
+		fetchUserInfo(userId)
+			.then(res => {
+				commit("SET_USER", res.data);
 			})
 			.catch(err => console.log(err));
 	}

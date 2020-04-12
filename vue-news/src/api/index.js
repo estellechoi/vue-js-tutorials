@@ -14,5 +14,9 @@ function fetchAskList() {
 function fetchJobsList() {
 	return axios.get(`${config.baseUrl}jobs/1.json`);
 }
+function fetchUserInfo(userId) {
+	// https://api.hnpwa.com/v0/user/davideast.json
+	return axios.get(`${config.baseUrl}users/${userId}.json`);
+}
 
-export { fetchNewsList, fetchAskList, fetchJobsList };
+export { fetchNewsList, fetchAskList, fetchJobsList, fetchUserInfo };
