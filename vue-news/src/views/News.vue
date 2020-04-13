@@ -6,9 +6,7 @@
 			<small>
 				{{ item.time_ago }} by
 				<!-- change page for router-vue -->
-				<router-link :to="`/userInfo/${item.user}`"
-					>{{ item.user }}
-				</router-link>
+				<router-link :to="`/users/${item.user}`">{{ item.user }} </router-link>
 			</small>
 		</p>
 	</div>
