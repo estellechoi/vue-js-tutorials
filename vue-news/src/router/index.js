@@ -4,7 +4,7 @@ import News from "../views/News.vue";
 import Ask from "../views/Ask.vue";
 import Jobs from "../views/Jobs.vue";
 import UserInfo from "../views/UserInfo.vue";
-import ItemBox from "../views/ItemBox.vue";
+import AskItem from "../views/AskItem.vue";
 
 Vue.use(VueRouter);
 
@@ -28,13 +28,13 @@ export const router = new VueRouter({
 			path: "/jobs",
 			component: Jobs
 		},
-		{
-			path: "/itemBox",
-			component: ItemBox
-		},
 		// Dynamic Matching (동적 라우트 매칭)
 		{
-			path: "/userInfo/:id",
+			path: "/item/:id",
+			component: AskItem
+		},
+		{
+			path: "/users/:id",
 			component: UserInfo
 		}
 	]
