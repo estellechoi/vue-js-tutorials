@@ -2,7 +2,8 @@ import {
 	fetchNewsList,
 	fetchJobsList,
 	fetchAskList,
-	fetchUserInfo
+	fetchUserInfo,
+	fetchAsk
 } from "../api/index.js";
 
 // actions: 비동기 호출 (백엔드 API로 부터 데이터를 받아온다.)
@@ -34,6 +35,11 @@ export default {
 			.then(res => {
 				commit("SET_USER", res.data);
 			})
+			.catch(err => console.log(err));
+	},
+	FETCH_ASK({ commit }, id) {
+		fetchAsk(id)
+			.then(res => commit("SET_ASK", res.data))
 			.catch(err => console.log(err));
 	}
 };
