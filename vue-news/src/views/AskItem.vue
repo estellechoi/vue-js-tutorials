@@ -2,20 +2,9 @@
   <div>
     <!-- 질문 정보 -->
     <section>
-      <!-- <div class="user-container">
-        <div>
-          <i class="fas fa-user"></i>
-        </div>
-        <div class="user-description">
-          <router-link :to="`/users/${fetchedAsk.user}`">{{ fetchedAsk.user }}</router-link>
-          <div class="time">{{ fetchedAsk.time_ago }}</div>
-        </div>
-      </div>-->
       <user-profile :userData="fetchedAsk">
-        <div slot="username">
-          <router-link :to="`/users/${fetchedAsk.user}`">{{ fetchedAsk.user }}</router-link>
-        </div>
-        <template slot="time">{{ fetchedAsk.time_ago }}</template>
+        <router-link slot="username" :to="`/users/${fetchedAsk.user}`">{{ fetchedAsk.user }}</router-link>
+        <template slot="time">{{ 'Posted ' + fetchedAsk.time_ago }}</template>
       </user-profile>
 
       <h3>{{ fetchedAsk.title }}</h3>
