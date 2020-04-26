@@ -1,7 +1,7 @@
 import axios from "axios"; // axios is Promise based library. axios = new Promise()
 
 const config = {
-	baseUrl: "https://api.hnpwa.com/v0/"
+	baseUrl: "https://api.hnpwa.com/v0/",
 };
 
 function fetchNewsList() {
