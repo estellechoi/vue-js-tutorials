@@ -2,12 +2,16 @@
   <div>
     <ul class="jobs-list">
       <li v-for="(item, index) in this.$store.state.jobs" :key="index" class="jobs-post">
-        <div class="jobs-point">{{ item.points }}</div>
+        <!-- if null, 0 -->
+        <div class="jobs-point">{{ item.points || 0 }}</div>
         <div>
           <p class="jobs-title">
             <a :href="item.url">{{ item.title }}</a>
           </p>
-          <small class="link-text">{{ item.time_ago }}, {{ item.domain }}</small>
+          <small class="link-text">
+            {{ item.time_ago }},
+            <a :href="item.url">{{ item.domain }}</a>
+          </small>
         </div>
       </li>
     </ul>
