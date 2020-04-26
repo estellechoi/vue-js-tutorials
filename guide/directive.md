@@ -1,6 +1,6 @@
-# 사용자 지정 디렉티브
+# 사용자 지정 디렉티브 (Custom Directives)
 
-## 디렉티브란?
+## 1. 디렉티브란?
 
 - 일반 엘리먼트에 하위 수준의 DOM 액세스가 필요한 경우, 사용자가 디렉티브를 지정하여 엘리먼트를 컨트롤할 수 있다.
 - Vue는 코어에 포함된 기본 디렉티브 세트(`v-model`과 `v-show`)를 제공한다.
@@ -91,4 +91,4 @@ new Vue({
 
 ### Reference
 
-- [사용자 지정 디렉티브](https://kr.vuejs.org/v2/guide/custom-directive.html)
+- [Custom Directives](https://vuejs.org/v2/guide/custom-directive.html)
