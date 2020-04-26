@@ -2,19 +2,19 @@
 
 ## Project setup
 
-### See your vue version
+### Check Vue version
 
 ```
 vue --version
 ```
 
-### If you have installed vue globally, the path might be
+### If installed globally, the path might be
 
 ```
 /usr/local/lib/node_modules/@vue
 ```
 
-### Create new vue project with project directory name
+### Create Vue project
 
 ```
 # vue cli 3.x
