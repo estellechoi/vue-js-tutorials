@@ -2,7 +2,7 @@
   <div>
     <!-- 질문 정보 -->
     <section>
-      <div class="user-container">
+      <!-- <div class="user-container">
         <div>
           <i class="fas fa-user"></i>
         </div>
@@ -10,7 +10,14 @@
           <router-link :to="`/users/${fetchedAsk.user}`">{{ fetchedAsk.user }}</router-link>
           <div class="time">{{ fetchedAsk.time_ago }}</div>
         </div>
-      </div>
+      </div>-->
+      <user-profile :userData="fetchedAsk">
+        <div slot="username">
+          <router-link :to="`/users/${fetchedAsk.user}`">{{ fetchedAsk.user }}</router-link>
+        </div>
+        <template slot="time">{{ fetchedAsk.time_ago }}</template>
+      </user-profile>
+
       <h3>{{ fetchedAsk.title }}</h3>
       <div v-html="fetchedAsk.content"></div>
     </section>
@@ -21,8 +28,12 @@
 
 <script>
 import { mapGetters } from "vuex";
+import UserProfile from "../components/UserProfile.vue";
 
 export default {
+  components: {
+    UserProfile
+  },
   computed: {
     ...mapGetters(["fetchedAsk"])
   },

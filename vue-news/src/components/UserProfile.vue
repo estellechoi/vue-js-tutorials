@@ -1,21 +1,23 @@
 <template>
   <div>
-    <!-- 질문 정보 -->
-    <section>
-      <div class="user-container">
-        <div>
-          <i class="fas fa-user"></i>
-        </div>
-        <div class="user-description">
-          <router-link :to="`/users/${userData.id}`">{{ userData.id }}</router-link>
-          <div class="time">{{ userData.created }}</div>
-        </div>
+    <div class="user-container">
+      <div>
+        <i class="fas fa-user"></i>
       </div>
-      <!-- <h3>{{ userData.karma }}</h3>
-      <div v-html="userData.content"></div>-->
-    </section>
-    <!-- 답글 -->
-    <section></section>
+      <div class="user-description">
+        <!-- <div>{{ userData.id }}</div> -->
+        <slot name="username">
+          <!-- 상의 컴포넌트에서 정의할 영역 -->
+        </slot>
+        <div class="time">
+          <!-- {{ userData.created }} -->
+          <slot name="time">
+            <!-- 상의 컴포넌트에서 정의할 영역 -->
+          </slot>
+        </div>
+        <slot name="karma"></slot>
+      </div>
+    </div>
   </div>
 </template>
 
