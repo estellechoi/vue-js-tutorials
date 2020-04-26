@@ -7,12 +7,12 @@
           <i class="fas fa-user"></i>
         </div>
         <div class="user-description">
-          <router-link :to="`/users/${userInfo.id}`">{{ userInfo.id }}</router-link>
-          <div class="time">{{ userInfo.created }}</div>
+          <router-link :to="`/users/${userData.id}`">{{ userData.id }}</router-link>
+          <div class="time">{{ userData.created }}</div>
         </div>
       </div>
-      <!-- <h3>{{ userInfo.karma }}</h3>
-      <div v-html="userInfo.content"></div>-->
+      <!-- <h3>{{ userData.karma }}</h3>
+      <div v-html="userData.content"></div>-->
     </section>
     <!-- 답글 -->
     <section></section>
@@ -20,18 +20,9 @@
 </template>
 
 <script>
-// import { mapGetters } from "vuex";
-
 export default {
-  computed: {
-    // ...mapGetters(["fetchedUser"])
-    userInfo() {
-      return this.$store.state.userInfo;
-    }
-  },
-  created() {
-    const userId = this.$route.params.id;
-    this.$store.dispatch("FETCH_USERINFO", userId); // payload (kind of parameter map)
+  props: {
+    userData: Object
   }
 };
 </script>
