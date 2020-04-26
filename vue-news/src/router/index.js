@@ -14,28 +14,31 @@ export const router = new VueRouter({
 	routes: [
 		{
 			path: "/",
-			redirect: "/news"
+			redirect: "/news",
 		},
 		{
 			path: "/news",
-			component: News
+			name: "news",
+			component: News,
 		},
 		{
 			path: "/ask",
-			component: Ask
+			name: "ask",
+			component: Ask,
 		},
 		{
 			path: "/jobs",
-			component: Jobs
+			name: "jobs",
+			component: Jobs,
 		},
 		// Dynamic Matching (동적 라우트 매칭)
 		{
 			path: "/item/:id",
-			component: AskItem
+			component: AskItem,
 		},
 		{
 			path: "/users/:id",
-			component: UserInfo
-		}
-	]
+			component: UserInfo,
+		},
+	],
 });
