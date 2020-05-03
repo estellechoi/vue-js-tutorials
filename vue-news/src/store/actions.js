@@ -12,6 +12,7 @@ export default {
 		fetchNewsList()
 			.then((res) => {
 				context.commit("SET_NEWS", res.data); // commit to mutations
+				return res;
 			})
 			.catch((err) => console.log(err));
 	},
@@ -27,6 +28,7 @@ export default {
 		fetchAskList()
 			.then((res) => {
 				context.commit("SET_ASKS", res.data);
+				return res;
 			})
 			.catch((err) => console.log(err));
 	},
