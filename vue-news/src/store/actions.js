@@ -34,7 +34,6 @@ export default {
 		fetchUserInfo(userId)
 			.then((res) => {
 				console.log(res);
-
 				commit("SET_USER", res.data);
 			})
 			.catch((err) => console.log(err));

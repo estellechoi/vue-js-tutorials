@@ -50,19 +50,18 @@ export default {
   created() {
     // console.log(this.$route);
     // /router/index.js 에서 name 정의
-    const name = this.$route.name;
-    let actionName = "";
-    if (name === "ask") {
-      actionName = "FETCH_ASKS";
-    } else if (name === "news") {
-      actionName = "FETCH_NEWS";
-    } else if (name === "jobs") {
-      actionName = "FETCH_JOBS";
-    }
-
-    if (name) {
-      this.$store.dispatch(actionName);
-    }
+    // const name = this.$route.name;
+    // let actionName = "";
+    // if (name === "ask") {
+    //   actionName = "FETCH_ASKS";
+    // } else if (name === "news") {
+    //   actionName = "FETCH_NEWS";
+    // } else if (name === "jobs") {
+    //   actionName = "FETCH_JOBS";
+    // }
+    // if (name) {
+    //   this.$store.dispatch(actionName);
+    // }
   }
 };
 </script>
