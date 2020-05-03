@@ -6,13 +6,23 @@
 
 <script>
 import ItemList from "../components/ItemList.vue";
+import bus from "../utils/bus.js";
 
 export default {
   components: {
     ItemList
   },
   created() {
-    this.$store.dispatch("FETCH_ASKS");
+    bus.$emit("start:spinner");
+    this.$store
+      .dispatch("FETCH_ASKS")
+      .then(() => {
+        console.log("fetched");
+        bus.$emit("end:spinner");
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 };
 </script>
