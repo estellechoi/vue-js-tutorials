@@ -1,10 +1,11 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import News from "../views/News.vue";
-import Ask from "../views/Ask.vue";
-import Jobs from "../views/Jobs.vue";
+// import News from "../views/News.vue";
+// import Ask from "../views/Ask.vue";
+// import Jobs from "../views/Jobs.vue";
 import UserInfo from "../views/UserInfo.vue";
 import AskItem from "../views/AskItem.vue";
+import createListView from "../views/createListView.js";
 
 Vue.use(VueRouter);
 
@@ -19,17 +20,20 @@ export const router = new VueRouter({
 		{
 			path: "/news",
 			name: "news",
-			component: News,
+			// component: News,
+			component: createListView("News"),
 		},
 		{
 			path: "/ask",
 			name: "ask",
-			component: Ask,
+			// component: Ask,
+			component: createListView("Ask"),
 		},
 		{
 			path: "/jobs",
 			name: "jobs",
-			component: Jobs,
+			// component: Jobs,
+			component: createListView("Jobs"),
 		},
 		// Dynamic Matching (동적 라우트 매칭)
 		{
