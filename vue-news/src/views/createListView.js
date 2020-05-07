@@ -1,9 +1,10 @@
 import List from "./List.vue";
 import bus from "../utils/bus.js";
 
+// this is the high order component.
 export default function createListView(name) {
 	return {
-		// 재사용할 컴포넌트 옵션들
+		// options for sharing(reuse)
 		name: name,
 		created() {
 			bus.$emit("start:spinner");
@@ -17,7 +18,7 @@ export default function createListView(name) {
 					console.log(err);
 				});
 		},
-		// renders components.
+		// render component.
 		render(createElement) {
 			return createElement(List);
 		},
