@@ -5,6 +5,7 @@
 </template>
 
 <script>
+// high order component
 import ItemList from "../components/ItemList.vue";
 export default {
   components: {

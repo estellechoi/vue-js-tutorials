@@ -18,7 +18,7 @@ export default function createListView(name) {
 					console.log(err);
 				});
 		},
-		// render component.
+		// render List component.
 		render(createElement) {
 			return createElement(List);
 		},
