@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- :userData="userInfo" -->
     <user-profile :userData="userInfo">
       <div slot="username">{{ userInfo.id }}</div>
       <span slot="time">{{ 'Joined ' + userInfo.created }}</span>
