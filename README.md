@@ -1,12 +1,12 @@
 # Vue.js Self-study
 
-## What I Learned
+## 🌎 What I Learned
 
 - [사용자 지정 디렉티브 (Custom Directives)](https://github.com/estellechoi/vue-js-tutorials/blob/master/guide/directive.md)
 - [네비게이션 가드 (Navigation Guards)](https://github.com/estellechoi/vue-js-tutorials/blob/master/guide/navigationGuards.md)
 - [CORS와 프록시 (Proxy)](https://github.com/estellechoi/vue-js-tutorials/blob/master/guide/proxy.md)
 
-## Tips
+## 🌎 Tips
 
 ### Check Vue version
 
