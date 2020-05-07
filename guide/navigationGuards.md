@@ -1,4 +1,4 @@
-# 네비게이션 가드 (Custom Directives)
+# 네비게이션 가드 (Navigation Guards)
 
 ## 1. 네비게이션 가드 사용하기
 
