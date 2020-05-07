@@ -1,4 +1,4 @@
-# Vue.js Self-study
+# Quick Seeing of This Repo
 
 ## 🌎 What I Learned
 
