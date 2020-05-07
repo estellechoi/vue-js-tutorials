@@ -7,17 +7,8 @@ const config = {
 function fetchList(pageName) {
 	return axios.get(`${config.baseUrl}${pageName}/1.json`);
 }
-// function fetchNewsList() {
-// 	// return axios.get(config.baseUrl + "news/1.json"); to ES6 syntax
-// 	return axios.get(`${config.baseUrl}news/1.json`);
-// }
-// function fetchAskList() {
-// 	return axios.get(`${config.baseUrl}ask/1.json`);
-// }
-// function fetchJobsList() {
-// 	return axios.get(`${config.baseUrl}jobs/1.json`);
-// }
 
+// ES6 syntax
 function fetchUserInfo(userId) {
 	// https://api.hnpwa.com/v0/user/davideast.json
 	return axios.get(`${config.baseUrl}users/${userId}.json`);
@@ -27,11 +18,4 @@ function fetchAsk(id) {
 	return axios.get(`${config.baseUrl}item/${id}.json`);
 }
 
-export {
-	fetchList,
-	// fetchNewsList,
-	// fetchAskList,
-	// fetchJobsList,
-	fetchUserInfo,
-	fetchAsk,
-};
+export { fetchList, fetchUserInfo, fetchAsk };
