@@ -2,6 +2,7 @@
 
 ## 🌎 What I Learned
 
+- [라이프사이클 훅 (Lifecycle Hooks)](https://github.com/estellechoi/vue-js-tutorials/blob/master/guide/lifeCycleHook.md)
 - [사용자 지정 디렉티브 (Custom Directives)](https://github.com/estellechoi/vue-js-tutorials/blob/master/guide/directive.md)
 - [네비게이션 가드 (Navigation Guards)](https://github.com/estellechoi/vue-js-tutorials/blob/master/guide/navigationGuards.md)
 - [CORS와 프록시 (Proxy)](https://github.com/estellechoi/vue-js-tutorials/blob/master/guide/proxy.md)
