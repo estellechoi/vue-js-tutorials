@@ -5,11 +5,13 @@
 - `node.js`에서 프로그래밍에 필요한 값들을 서술할 수 있는 파일이다.
 - 작성규칙
   - `key=value` 형태로 작성한다.
-  - 줄의 맨 앞에 `\#` 를 붙이면 주석이다.
+  - 줄의 맨 앞에 `#` 를 붙이면 주석이다.
 
 ```
 # This is sample variable.
 API_URL=http://test.test.com
+MESSAGE=hello
+NUMBER=1111
 ```
 
 ## 2. .env 파일 사용하기
@@ -18,11 +20,12 @@ API_URL=http://test.test.com
 - `dotenv` 패키지를 불러온 뒤 config 메소드를 실행하면 `.env` 파일의 내용을 `process.env` 객체를 통하여 접근할 수 있다.
 
 ```javascript
-var express = require("express");
-
-var router = express.Router();
-
 require("dotenv").config();
+```
+
+```javascript
+var express = require("express");
+var router = express.Router();
 
 router.get("/message", function (req, res, next) {
 	res.send(process.env.MESSAGE);
