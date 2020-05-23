@@ -1,75 +1,93 @@
-# .env 환경변수 (.env Environment Variable)
+# env 환경변수 (Environment Variable)
 
 ## 1. env 란 ?
 
-- 터미널에서 `env` 명령어를 타이핑해보면 현재 컴퓨터에 설정된 환경변수들이 주욱 나열되는 것을 볼 수 있다.
+- 환경변수를 뜻한다.
+- 터미널에서 `env` 명령어를 타이핑하면 현재 컴퓨터에 설정된 환경변수들이 나열된다.
 
 ```console
 $ env
 ```
 
-- 다음과 같이 환경변수를 생성할 수 있다.
+- 환경변수 생성하기
 
 ```shell
 $ env KEY=VALUE
 ```
 
-## 1. .env 파일이란 ?
+- 환경변수 삭제하기
 
-- `node.js`에서 프로그래밍에 필요한 값들을 서술할 수 있는 파일이다.
-- 작성규칙
-  - `key=value` 형태로 작성한다.
-  - 줄의 맨 앞에 `#` 를 붙이면 주석이다.
-
+```console
+$ env -u KEY
 ```
+
+## 2. 크로스 플랫폼 환경변수 설정
+
+- 한 프로젝트의 멤버들이 MacOS, Windows, Linux 등 다양한 OS를 사용하고 있다면, OS마다 환경변수 설정방법이 달라 난감한 상황이 발생한다.
+- 이에 대해 Node.js 커뮤니티에서 내놓은 몇몇 대책 중 하나는 `dotenv` 라이브러리이다.
+
+## 3. dotenv 라이브러리
+
+- `dotenv` 라이브러리는 `.env` 파일에 작성한 환경변수들을 사용하는 OS에 맞추어 컴퓨터 환경변수에 설정해주는 기능을 가지고 있다.
+
+### .env 파일
+
+- `KEY=VALUE` 형태로 작성한다.
+- 줄의 맨 앞에 `#` 를 붙이면 주석이다.
+
+```env
 # This is sample variable.
+
 API_URL=http://test.test.com
 MESSAGE=hello
 NUMBER=1111
 ```
 
-## 2. .env 파일 사용하기
+### NPM 으로 dotenv 설치하기
 
-- `.env` 파일을 이용하기 위해서는 프로젝트에 `dotenv`와 같은 패키지를 설치해야한다.
-- `dotenv` 패키지를 불러온 뒤 config 메소드를 실행하면 `.env` 파일의 내용을 `process.env` 객체를 통하여 접근할 수 있다.
-
-```javascript
-require("dotenv").config();
+```
+npm install --save dotenv
 ```
 
-```javascript
-var express = require("express");
-var router = express.Router();
+### dotenv 사용하기
 
-router.get("/message", function (req, res, next) {
-	res.send(process.env.MESSAGE);
-});
+- 이 라이브러리의 `config` 메소드를 실행하면 프로젝트 루트 디렉토리의 `.env` 파일을 자동으로 인식해서 컴퓨터에 환경변수를 설정해준다.
 
-router.get("/number", function (req, res, next) {
-	res.send(process.env.NUMBER);
-});
+  > `.env` 파일의 기본 위치는 프로젝트의 루트 디렉토리이다.
 
-module.exports = router;
-```
-
-- `.env` 파일의 기본 위치는 프로젝트의 루트 디렉토리이다.
-- 다른 위치에 있거나 기본 이름이 다른 `.env` 파일을 참조하려면, `config` 메소드를 이용하여 설정한다. (`path` 속성)
+- 다시 말해, `.env` 파일에 나열된 변수들에 접근한다는 것은 내 컴퓨터에 자동으로 설정된 해당 환경변수들에 접근하는 것과 같다.
 
 ```javascript
-require("dotenv").config({
-	path: ".env.sample",
-});
+import dotenv from "dotenv";
+
+dotenv.config();
 ```
+
+- `process.env` 객체를 통해 환경변수에 접근할 수 있다.
+
+```javascript
+const url = process.env.API_URL;
+```
+
+### dotenv 설정하기
+
+- 다른 위치에 있거나 기본 이름이 다른 `.env` 파일을 참조하려면, `config` 메소드를 이용하여 설정한다.
+- 운영, 스테이징, 개발 등 상황에 맞게 `.env` 환경변수 파일을 설정한 후 사용할 수 있다.
+
+```javascript
+import dotenv from "dotenv";
+
+dotenv.config({ path: path.join(__dirname, "path/to/.env") });
+```
+
+## 4. cross-env 라이브러리
+
+- 이 라이브러리는 프로그램을 CLI 환경에서 실행시킬 때에 환경변수를 설정하는 기능을 가지고 있다.
 
 ---
 
 ### Reference
 
 - [[Node.js] .env 환경변수](https://spiralmoon.tistory.com/entry/Nodejs-env-%ED%99%98%EA%B2%BD%EB%B3%80%EC%88%98)
+- [Node.js 기반에서 환경변수 사용하기 (dotenv, cross-env)](https://velog.io/@public_danuel/process-env-on-node-js)
 - [Vue CLI 공식문서](https://cli.vuejs.org/guide/cli-service.html#vue-cli-service-build)
-
-$$
-$$
-
-$$
-$$
