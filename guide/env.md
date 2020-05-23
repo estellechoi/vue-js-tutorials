@@ -4,7 +4,7 @@
 
 - 터미널에서 `env` 명령어를 타이핑해보면 현재 컴퓨터에 설정된 환경변수들이 주욱 나열되는 것을 볼 수 있다.
 
-<code>env</code>
+      	$$$ env
 
 ## 1. .env 파일이란 ?
 
@@ -59,3 +59,9 @@ require("dotenv").config({
 
 - [[Node.js] .env 환경변수](https://spiralmoon.tistory.com/entry/Nodejs-env-%ED%99%98%EA%B2%BD%EB%B3%80%EC%88%98)
 - [Vue CLI 공식문서](https://cli.vuejs.org/guide/cli-service.html#vue-cli-service-build)
+
+$$
+$$
+
+$$
+$$
