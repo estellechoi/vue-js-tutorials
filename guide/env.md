@@ -21,6 +21,9 @@ $ env KEY=VALUE
 $ env -u KEY
 ```
 
+- 프로그램 실행시 중요한 변수들을 코드로부터 분리하기 위해 환경변수를 사용한다.
+  > 포트번호, DB 사용자, 암호 등 노출의 우려가 있는 정보들을 저장한다.
+
 ## 2. 크로스 플랫폼 환경변수 설정
 
 - 한 프로젝트의 멤버들이 MacOS, Windows, Linux 등 다양한 OS를 사용하고 있다면, OS마다 환경변수 설정방법이 달라 난감한 상황이 발생한다.
@@ -52,8 +55,6 @@ npm install --save dotenv
 
   > `.env` 파일의 기본 위치는 프로젝트의 루트 디렉토리이다.
 
-- 다시 말해, `.env` 파일에 나열된 변수들에 접근한다는 것은 내 컴퓨터에 자동으로 설정된 해당 환경변수들에 접근하는 것과 같다.
-
 ```javascript
 import dotenv from "dotenv";
 
@@ -70,16 +71,17 @@ const url = process.env.API_URL;
 
 - 다른 위치에 있거나 기본 이름이 다른 `.env` 파일을 참조하려면, `config` 메소드를 이용하여 설정한다.
 - 운영, 스테이징, 개발 등 상황에 맞게 `.env` 환경변수 파일을 설정한 후 사용할 수 있다.
+- 원하는 상황만큼 `.env`, `.env.production`, `.env.staging` 등 진입점 파일들을 따로 만들고, 상황에 따라 `dotenv` 설정으로 관리한다.
 
 ```javascript
 import dotenv from "dotenv";
 
-dotenv.config({ path: path.join(__dirname, "path/to/.env") });
+dotenv.config({ path: path.join(__dirname, "path/to/.env.develop") });
 ```
 
 ## 4. cross-env 라이브러리
 
-- 이 라이브러리는 CLI 환경에서 프로젝트를 생성하고 실행시킬 때 환경변수를 설정하는 기능을 가지고 있다.
+- 이 라이브러리는 CLI 환경에서 프로그램을 실행시키는 시점에 환경변수를 설정하는 기능을 가지고 있다.
 
 ### NPM으로 cross-env 설치하기
 
@@ -87,19 +89,29 @@ dotenv.config({ path: path.join(__dirname, "path/to/.env") });
 npm install --save cross-env
 ```
 
-### 1 개의 진입점으로 상황에 맞게 환경변수 사용하기
+### 프로그램 실행시 환경변수 설정하기
+
+```console
+cross-env NODE_ENV=production PORT=80 node app
+```
+
+- 프로그램 실행시 설정된 환경변수에 따라 원하는 .env 파일을 참조할 수 있다.
 
 ```javascript
 import path from "path";
 import dotenv from "dotenv";
 
 if (process.env.NODE_ENV === "production") {
-	dotenv.config({ path: path.join(__dirname, "path/to/.env.production") });
-} else if (process.env.NODE_ENV === "develop") {
-	dotenv.config({ path: path.join(__dirname, "path/to/.env.develop") });
-} else {
-	throw new Error("process.env.NODE_ENV not found.");
+	return dotenv.config({
+		path: path.join(__dirname, "path/to/.env.production"),
+	});
 }
+
+if (process.env.NODE_ENV === "develop") {
+	return dotenv.config({ path: path.join(__dirname, "path/to/.env.develop") });
+}
+
+throw new Error("process.env.NODE_ENV not found.");
 ```
 
 ---
