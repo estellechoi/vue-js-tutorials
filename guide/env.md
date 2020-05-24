@@ -42,7 +42,7 @@ API_URL=http://test.test.com
 
 ### NPM 으로 dotenv 설치하기
 
-```
+```console
 npm install --save dotenv
 ```
 
