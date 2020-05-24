@@ -37,10 +37,7 @@ $ env -u KEY
 
 ```env
 # This is sample variable.
-
 API_URL=http://test.test.com
-MESSAGE=hello
-NUMBER=1111
 ```
 
 ### NPM 으로 dotenv 설치하기
@@ -82,7 +79,28 @@ dotenv.config({ path: path.join(__dirname, "path/to/.env") });
 
 ## 4. cross-env 라이브러리
 
-- 이 라이브러리는 프로그램을 CLI 환경에서 실행시킬 때에 환경변수를 설정하는 기능을 가지고 있다.
+- 이 라이브러리는 CLI 환경에서 프로젝트를 생성하고 실행시킬 때 환경변수를 설정하는 기능을 가지고 있다.
+
+### NPM으로 cross-env 설치하기
+
+```console
+npm install --save cross-env
+```
+
+### 1 개의 진입점으로 상황에 맞게 환경변수 사용하기
+
+```javascript
+import path from "path";
+import dotenv from "dotenv";
+
+if (process.env.NODE_ENV === "production") {
+	dotenv.config({ path: path.join(__dirname, "path/to/.env.production") });
+} else if (process.env.NODE_ENV === "develop") {
+	dotenv.config({ path: path.join(__dirname, "path/to/.env.develop") });
+} else {
+	throw new Error("process.env.NODE_ENV not found.");
+}
+```
 
 ---
 
