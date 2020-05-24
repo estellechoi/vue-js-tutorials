@@ -6,19 +6,19 @@
 - 터미널에서 `env` 명령어를 타이핑하면 현재 컴퓨터에 설정된 환경변수들이 나열된다.
 
 ```console
-$ env
+env
 ```
 
 - 환경변수 생성하기
 
-```shell
-$ env KEY=VALUE
+```console
+env KEY=VALUE
 ```
 
 - 환경변수 삭제하기
 
 ```console
-$ env -u KEY
+env -u KEY
 ```
 
 - 프로그램 실행시 중요한 변수들을 코드로부터 분리하기 위해 환경변수를 사용한다.
