@@ -47,30 +47,6 @@
 > Don’t use `.passive` and `.prevent` together, because `.prevent` will be ignored and your browser will probably show you a warning. Remember, `.passive` communicates to the browser that you don’t want to prevent the event’s default behavior.
 > Order matters when using modifiers because the relevant code is generated in the same order. Therefore using `v-on:click.prevent.self` will prevent all clicks while `v-on:click.self.prevent` will only prevent clicks on the element itself.
 
-## 2. Regarding JavaScript Event Handler
-
-> 수정 필요
-
-- DOM event handlers can have modifiers that alter their behaviour.
-- The list of modifiers:
-
-  - `preventDefault` : calls `event.preventDefault()` before running the handler. Useful for client-side form handling.
-  - `stopPropagation` : calls `event.stopPropagation()`, preventing the event reaching the next element.
-  - `passive` : improves scrolling performance on touch/wheel events.
-    > `passive` 속성이 false인 경우에 `touchstart`, `touchmove`와 같은 이벤트가 발생하면 `preventDefault`를 이용하여 실제 이벤트 자체를 막을 수 있기 때문에, 브라우저는 scroll을 계속 할지 안할지를 매번 감시해야만 한다. 하지만, passive 속성이 true일 경우에는 preventDefault를 이용하여 scroll 이벤트를 막지 않겠다고 브라우저에게 이야기하는 것과 같다. Chrome 54+ 부터 `passive` 속성이 특별한 상황일 경우에는 기본값이 true로 설정된다.
-  - `capture` : fires the handler during the capture phase instead of the bubbling phase
-    > [Event bubbling and capture](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#Event_bubbling_and_capture)
-  - `once` : remove the handler after the first time it runs
-  - `self` : only trigger handler if `event.target` is the element itself.
-
-```javascript
-document.addEventListener("touchstart", handler, {
-	capture: false,
-	once: false,
-	passive: false,
-});
-```
-
 ## 2. Key Modifiers
 
 - When listening for keyboard events, we often need to check for specific keys.
@@ -166,6 +142,30 @@ Vue.config.keyCodes.f1 = 112;
   - `.left`
   - `.right`
   - `.middle`
+
+## 4. Regarding JavaScript Event Handler
+
+> 수정 필요
+
+- DOM event handlers can have modifiers that alter their behaviour.
+- The list of modifiers:
+
+  - `preventDefault` : calls `event.preventDefault()` before running the handler. Useful for client-side form handling.
+  - `stopPropagation` : calls `event.stopPropagation()`, preventing the event reaching the next element.
+  - `passive` : improves scrolling performance on touch/wheel events.
+    > `passive` 속성이 false인 경우에 `touchstart`, `touchmove`와 같은 이벤트가 발생하면 `preventDefault`를 이용하여 실제 이벤트 자체를 막을 수 있기 때문에, 브라우저는 scroll을 계속 할지 안할지를 매번 감시해야만 한다. 하지만, passive 속성이 true일 경우에는 preventDefault를 이용하여 scroll 이벤트를 막지 않겠다고 브라우저에게 이야기하는 것과 같다. Chrome 54+ 부터 `passive` 속성이 특별한 상황일 경우에는 기본값이 true로 설정된다.
+  - `capture` : fires the handler during the capture phase instead of the bubbling phase
+    > [Event bubbling and capture](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#Event_bubbling_and_capture)
+  - `once` : remove the handler after the first time it runs
+  - `self` : only trigger handler if `event.target` is the element itself.
+
+```javascript
+document.addEventListener("touchstart", handler, {
+	capture: false,
+	once: false,
+	passive: false,
+});
+```
 
 ---
 
