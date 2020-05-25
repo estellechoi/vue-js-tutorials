@@ -49,6 +49,8 @@
 
 ## 2. Regarding JavaScript Event Handler
 
+> 수정 필요
+
 - DOM event handlers can have modifiers that alter their behaviour.
 - The list of modifiers:
 
