@@ -1,8 +1,26 @@
-# 이벤트 모디파이어 (Event Modifier)
+# Event Modifier
 
-## 1. 이벤트 모디파이어란 ?
+## 1. Event Modifier ?
 
--
+- DOM event handlers can have modifiers that alter their behaviour.
+- The list of modifiers:
+
+  - `preventDefault` — calls `event.preventDefault()` before running the handler. Useful for client-side form handling.
+  - `stopPropagation` — calls `event.stopPropagation()`, preventing the event reaching the next element.
+  - `passive` — improves scrolling performance on touch/wheel events.
+    > `passive` 속성이 false인 경우에 `touchstart`, `touchmove`와 같은 이벤트가 발생하면 `preventDefault`를 이용하여 실제 이벤트 자체를 막을 수 있기 때문에, 브라우저는 scroll을 계속 할지 안할지를 매번 감시해야만 한다. 하지만, passive 속성이 true일 경우에는 preventDefault를 이용하여 scroll 이벤트를 막지 않겠다고 브라우저에게 이야기하는 것과 같다. Chrome 54+ 부터 `passive` 속성이 특별한 상황일 경우에는 기본값이 true로 설정된다.
+  - `capture` — fires the handler during the capture phase instead of the bubbling phase
+    > [Event bubbling and capture](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#Event_bubbling_and_capture)
+  - `once` — remove the handler after the first time it runs
+  - `self` — only trigger handler if `event.target` is the element itself.
+
+```javascript
+document.addEventListener("touchstart", handler, {
+	capture: false,
+	once: false,
+	passive: false,
+});
+```
 
 ## 2. Key Modifiers
 
@@ -99,3 +117,13 @@ Vue.config.keyCodes.f1 = 112;
   - `.left`
   - `.right`
   - `.middle`
+
+---
+
+### Reference
+
+- [Vue.js Guide](https://vuejs.org/v2/guide/events.html#Event-Modifiers)
+- [Vue.js API](https://vuejs.org/v2/api/#keyCodes)
+- [KeyboardEvent.keyCode](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode)
+- [EventTarget.removeEventListener() | MDN](https://developer.mozilla.org/ko/docs/Web/API/EventTarget/removeEventListener)
+- [addEventListener의 요상한 옵션들 중의 하나 Passive](http://sculove.github.io/blog/2016/12/29/addEventListener-passive/)
