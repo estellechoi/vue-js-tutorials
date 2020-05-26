@@ -100,6 +100,7 @@ Access-Control-Allow-Headers: Origin, Accept, X-Requested-With, Content-type, Ac
 - [교차 출처 리소스 공유 (CORS) | MDN](https://developer.mozilla.org/ko/docs/Web/HTTP/CORS)
 - [Cross-Origin Resource Sharing (CORS) | MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
 - [Access-Control-Allow-Credentials](https://developer.mozilla.org/ko/docs/Web/HTTP/Headers/Access-Control-Allow-Credentials)
+- [Same Origin Policy | W3C](https://www.w3.org/Security/wiki/Same_Origin_Policy)
 - [javascript ajax 크로스도메인 요청 - CORS](https://brunch.co.kr/@adrenalinee31/1)
 - [Using CORS](https://www.html5rocks.com/en/tutorials/cors/)
 - [Origin <origin> is not allowed by Access-Control-Allow-Origin | Stack Overflow](https://stackoverflow.com/questions/18642828/origin-origin-is-not-allowed-by-access-control-allow-origin)
