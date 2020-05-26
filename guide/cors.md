@@ -3,32 +3,40 @@
 ## 1. 동일출처 정책(SOP, Same Origin Policy)
 
 - 브라우저의 보안 정책 중 하나이다.
-- SOP는 어떤 출처에서 불러온 문서나 스크립트가 다른 출처에서 가져온 리소스와 상호작용하는 것을 제한하는 중요한 보안 방식이다.
-  > SOP에 대한 자세한 설명은 [여기](https://developer.mozilla.org/ko/docs/Web/Security/Same-origin_policy)
-- [출처(Origin)](https://developer.mozilla.org/ko/docs/Glossary/Origin)는 접근하려는 서버의 <strong>URL 스킴(프로토콜, 호스트(도메인), 포트</strong>로 정의된다. 스킴, 호스트, 포트가 모두 일치하는 경우 같은 출처를 가졌다고 한다.
+- 어떤 출처에서 불러온 문서나 스크립트가 다른 출처에서 가져온 리소스와 상호작용하는 것을 제한하는 중요한 보안 방식이다.
+  > 동일출처 정책(SOP)에 대한 자세한 설명은 [여기](https://developer.mozilla.org/ko/docs/Web/Security/Same-origin_policy)
+- [출처(Origin)](https://developer.mozilla.org/ko/docs/Glossary/Origin)에 해당하는 것은 접근하려는 서버의 <strong>URL 스킴(프로토콜), 호스트(도메인), 포트</strong>이다. 스킴, 호스트, 포트가 모두 일치하는 경우 같은 출처를 가졌다고 한다.
   > 물리적으로 동일한 서버에서도 여러 도메인을 사용할 수 있는데, 이 때에도 동일하게 Cross Origin 이슈가 발생한다.
-- 웹 애플리케이션에서 요청하는 리소스의 출처(도메인, 프로토콜, 포트)가 웹 애플리케이션의 출처와 다르면 교차출처(Cross Origin) 요청이다.
+- 웹 애플리케이션에서 요청하는 리소스의 출처(도메인, 프로토콜, 포트)가 웹 애플리케이션의 출처와 다르면 Cross Origin 요청이다.
 - 예를 들어, JavaScript의 [XMLHttpRequest](https://developer.mozilla.org/ko/docs/Web/API/XMLHttpRequest)와 [Fetch API](https://developer.mozilla.org/ko/docs/Web/API/Fetch_API)는 SOP를 따른다.
 
   > 샌드박스(Sandbox)라고도 한다. 샌드박스는 보호된 영역 안에서만 프로그램을 동작시킬 수 있도록 하며, 외부에 의해 영향을 받지 않도록 하는 모델을 말한다. 단어에서 유추할 수 있듯이 어린아이들이 뛰어놀 때, 다치지 않고, 그 안에서만 놀 수 있도록 만든 '모래 놀이통'에서 왔다.
 
 - 이 정책은 초기에 웹사이트 보안을 위한 좋은 방법으로 생각되었으나, 여러 도메인에 걸쳐 구성되는 대규모 웹 프로젝트가 늘어나고 REST API 등을 이용한 외부 호출이 많아지면서 어떤 상황에서는 거추장스러운 기술이 되었다. (Cross Origin 이슈)
 
+<br>
+
 ## 2. CORS(Cross Origin Resource Sharing)란 ?
 
 - CORS는 한 출처에서 실행 중인 웹 애플리케이션이 다른 출처의 리소스에 접근할 수 있는 권한을 부여하도록 브라우저에 알려주는 체제이다.
   > SOP를 회피하여 Cross Origin 이슈를 해결한다.
 
+<br>
+
 ## 3. CORS 작동방식
 
-- 요청하는 서버 URL이 외부 도메인일 경우 브라우저는 실제 요청을 보내기 전에 `Preflight` 요청을 보낸다.
-- `Preflight` 요청은 해당 URL에 `OPTIONS` 메소드로 요청을 미리 날려보고, 접근 권한이 있는지 여부를 확인한다.
+- 요청하는 서버 URL이 외부 도메인일 경우 브라우저는 실제 요청을 보내기 전에 Preflight 요청을 보낸다.
+- Preflight 요청은 해당 URL에 `OPTIONS` 메소드로 요청을 미리 날려보고, 접근 권한이 있는지 여부를 확인한다.
+
+![preflight](./../image/preflight_correct.png)
+
+<br>
 
 ## 4. 서버에서 CORS 핸들링하기
 
-- 서버로 보내진 `Preflight` 요청을 처리하여 브라우저에서 실제 요청을 보낼 수 있도록 허용한다.
+- 서버로 보내진 Preflight 요청을 처리하여 브라우저에서 실제 요청을 보낼 수 있도록 허용한다.
 
-### 모든 외부 도메인에 대해 요청 허용하기
+### 4-1. 모든 외부 도메인에 대해 요청 허용하기
 
 ```java
 Access-Control-Allow-Origin: *
@@ -42,7 +50,9 @@ Access-Control-Allow-Headers: Origin, Accept, X-Requested-With, Content-type, Ac
 
 - Don't use `Access-Control-Allow-Origin: *` if your server is trying to set cookie and you use `withCredentials: true`. When responding to a credentialed request, the server must specify an origin in the value of the `Access-Control-Allow-Origin` header, instead of specifying the `*` wildcard. Read "Credentialed requests and wildcards" part of [this document](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS).
 
-### 외부 도메인 요청을 선별적으로 허용하기
+<br>
+
+### 4-2. 외부 도메인 요청을 선별적으로 허용하기
 
 - 아래의 Request Headers 값을 보고, 해당 출처(Origin)로부터의 접근을 허용하는 요청 스펙을 Response Headers에 넣어주는 구현을 하면 된다.
 - Filter나 Interceptor 등을 통해 구현해야 한다.
@@ -72,6 +82,8 @@ Access-Control-Allow-Headers: Origin, Accept, X-Requested-With, Content-type, Ac
 - Access-Control-Allow-Methods : 요청을 허용하는 메서드. <b>기본값은 GET, POST라고 보면 된다. 이 해더가 없으면 GET과 POST 요청만 가능하다.</b> 만약 이 해더가 지정이 되어 있으면, 클라이언트에서는 해더 값에 해당하는 메서드일 경우에만 실제 요청을 시도하게 된다.
 
 - Access-Control-Allow-Headers : 요청을 허용하는 해더.
+
+<br>
 
 ## 5. 클라이언트에서 CORS 핸들링하기
 
