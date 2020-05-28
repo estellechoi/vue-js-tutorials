@@ -66,22 +66,22 @@ Access-Control-Allow-Headers: Origin, Accept, X-Requested-With, Content-type, Ac
 
 #### Response Headers
 
-- Access-Control-Allow-Origin : 요청을 허용하는 출처. `*` 이면 모든 곳에 공개되어 있음을 의미한다.
+- Access-Control-Allow-Origin : 요청을 허용하는 출처를 지정한다. `*` 이면 모든 곳에 공개되어 있음을 의미한다.
 
-- Access-Control-Allow-Credentials : <b>클라이언트 요청이 쿠키를 통해서 자격 증명을 해야 하는 경우에 true.</b> true를 응답받은 클라이언트는 실제 요청 시 서버에서 정의된 규격의 인증값이 담긴 쿠키를 같이 보내야 한다.
+- Access-Control-Allow-Credentials : <b>클라이언트 요청이 쿠키를 통해서 자격 증명을 해야 하는 경우에 `true`.</b> `Access-Control-Allow-Credentials: true`를 응답받은 클라이언트는 실제 요청 시 서버에서 정의된 규격의 인증값이 담긴 쿠키를 같이 보내야 한다.
 
   > Preflight 요청에 대한 응답에 포함시키면, 실제 요청에서 자격증명을 이용할 수 있는지에 대해 알려준다.
   > 심플한 `GET` 요청의 경우, Preflight 요청을 생략하고 바로 실제 요청을 보낸다. 이때 Response Headers에 이 속성이 없다면 브라우저는 응답이 있더라도 무시하고 웹 콘텐츠가 전달 되지 않는다.
   > 자격증명은 Requet Headers의 Cookie, Authorization와 TLS 클라이언트 인증서를 말한다.
   > `XMLHttpRequest.withCredentials` 속성이나 Fetch API 생성자의 `Request()`의 `credentials` 옵션과 함께 작동한다.
 
-- Access-Control-Expose-Headers : 클라이언트 요청에 포함되어도 되는 사용자 정의 해더.
+- Access-Control-Expose-Headers : 클라이언트 요청에 포함되어도 되는 사용자 정의 헤더를 지정한다.
 
-- Access-Control-Max-Age : 클라이언트에서 preflight 의 요청 결과를 저장할 기간을 지정. 클라이언트에서 preflight 요청의 결과를 저장하고 있을 시간이다. 해당 시간 동안은 preflight요청을 다시 하지 않게 된다.
+- Access-Control-Max-Age : 클라이언트에서 Preflight 의 요청 결과를 저장할 기간을 지정한다. 클라이언트에서 Preflight 요청의 결과를 저장하고 있을 시간이다. 해당 시간 동안은 Preflight 요청을 다시 하지 않는다.
 
-- Access-Control-Allow-Methods : 요청을 허용하는 메서드. <b>기본값은 GET, POST라고 보면 된다. 이 해더가 없으면 GET과 POST 요청만 가능하다.</b> 만약 이 해더가 지정이 되어 있으면, 클라이언트에서는 해더 값에 해당하는 메서드일 경우에만 실제 요청을 시도하게 된다.
+- Access-Control-Allow-Methods : 요청을 허용하는 메소드를 지정한다. <b>기본값은 `GET`, `POST` 이다. 이 헤더가 없으면 `GET`과 `POST` 요청만 가능하다.</b> 만약 이 헤더가 지정되어 있으면, 클라이언트에서는 헤더 값에 해당하는 메소드일 경우에만 실제 요청을 시도하게 된다.
 
-- Access-Control-Allow-Headers : 요청을 허용하는 해더.
+- Access-Control-Allow-Headers : 요청을 허용하는 헤더를 지정한다.
 
 <br>
 
