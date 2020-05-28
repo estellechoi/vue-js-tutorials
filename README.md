@@ -47,7 +47,7 @@ vue init webpack-simple project-directory-name
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Compiles and minifies for production 
 
 ```
 npm run build
